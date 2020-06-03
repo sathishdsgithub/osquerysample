@@ -1,4 +1,4 @@
-# Process with path name and remote IP and local IP address and user account details
+``` # Process with path name and remote IP and local IP address and user account details
 
 select users.username, processes.pid, processes.path, processes.name, process_open_sockets.local_address,
 process_open_sockets.local_port, process_open_sockets.remote_address,
@@ -42,4 +42,4 @@ select count(*) from processes ;
 # GEt the list of the users from the user directory
 
 select * from users where directory like '%/Users%' 
- 
+```
