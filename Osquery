@@ -1,0 +1,45 @@
+# Process with path name and remote IP and local IP address and user account details
+
+select users.username, processes.pid, processes.path, processes.name, process_open_sockets.local_address,
+process_open_sockets.local_port, process_open_sockets.remote_address,
+process_open_sockets.remote_port from processes join users on users.uid = processes.uid join
+process_open_sockets on process_open_sockets.pid = processes.pid where 
+process_open_sockets.remote_port !=0 
+
+
+# Process with local IP and remote IP and process name details
+
+select processes.name,process_open_sockets.local_address, process_open_sockets.remote_address, process_open_sockets.remote_port
+from process_open_sockets LEFT JOIN processes on process_open_sockets.pid = processes.pid 
+where process_open_sockets.remote_port !=0 AND processes.name !='';
+
+# Process Name with local and remote IP and user account details
+
+select users.username, processes.pid, processes.name, process_open_sockets.local_address,
+process_open_sockets.local_port, process_open_sockets.remote_address,
+process_open_sockets.remote_port from processes join users on users.uid = processes.uid join
+process_open_sockets on process_open_sockets.pid = processes.pid where 
+process_open_sockets.remote_port !=0 
+
+
+# Search for the description name like
+
+select uid,gid,username,description from users where description like '%daemon'
+
+
+# Get the MD5 hash of the file
+ 
+select md5 from file join hash using (path) where path='/etc/resolv.conf'
+ 
+# Get the total number of users
+ 
+select count(*) from users;
+
+# Get the total number of process
+
+select count(*) from processes ; 
+
+# GEt the list of the users from the user directory
+
+select * from users where directory like '%/Users%' 
+ 
