@@ -43,3 +43,6 @@ select count(*) from processes ;
 
 select * from users where directory like '%/Users%' 
 
+Windows 
+
+select p.name,p.path,pp.name AS parentname, pp.path AS parentpath from processes as p left outer join processes as pp on p.parent=pp.pid;
