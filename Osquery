@@ -47,13 +47,18 @@ Windows
 
 select p.name,p.path,pp.name AS parentname, pp.path AS parentpath from processes as p left outer join processes as pp on p.parent=pp.pid;
 
+Any auto start exclusing the svchost path
+
 select name,pid,path,display_name from services where start_type = 'AUTO_START' AND path NOT like 'C:\windows\system32\svchost.exe -k %';
 
 | SamSs            | 612  | C:\Windows\system32\lsass.exe | Security Accounts Manager  |
 
+Listening on which port for the process id
 
 osquery> select distinct processes.name, processes.path, listening_ports.port, processes.pid from listening_ports join processes using(pid) where listening_ports.address = '0.0.0.0';
 +--------------+-----------------------------------------+-------+------+
 | name         | path                                    | port  | pid  |
 +--------------+-----------------------------------------+-------+------+
 | sshd.exe     | C:\Program Files\OpenSSH-Win64\sshd.exe | 22    | 2612 |
+
+
