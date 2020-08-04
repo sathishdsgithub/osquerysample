@@ -61,4 +61,7 @@ osquery> select distinct processes.name, processes.path, listening_ports.port, p
 +--------------+-----------------------------------------+-------+------+
 | sshd.exe     | C:\Program Files\OpenSSH-Win64\sshd.exe | 22    | 2612 |
 
+Get the platform details
 
+
+select build_platform,version from osquery_info ;
