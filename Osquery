@@ -65,3 +65,7 @@ Get the platform details
 
 
 select build_platform,version from osquery_info ;
+
+Convert to json format
+
+sudo osqueryi 'select * from gatekeeper_approved_apps;' --json > /tmp/osjson.json
